@@ -1,6 +1,7 @@
 'use strict';
 
 const mysql = require('../../../packages/mysql');
+const pino = require('pino');
 
 module.exports = function (options, cb) {
 	const sql = `
@@ -24,5 +25,16 @@ module.exports = function (options, cb) {
 		options.salt
 	];
 
+	mysql(sql, params, function (err, results) {
+		if (err) {
+			pino.error('Error inserting new user', {
+				err: err,
+				sql: sql,
+				params: params
+			});
+			return cb(err);
+		}
 
+		return rb(null, results);
+	});
 };
