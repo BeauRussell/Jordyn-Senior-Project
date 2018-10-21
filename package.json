@@ -8,6 +8,7 @@
   "dependencies": {
     "ajv": "^6.0.0",
     "ajv-keywords": "^3.2.0",
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-generator": "^4.16.0",
     "moment": "^2.22.2",

@@ -1,7 +1,7 @@
 'use strict';
 
 const mysql = require('../../../packages/mysql');
-const pino = require('pino');
+const pino = require('pino')();
 
 module.exports = function (options, cb) {
 	const sql = `
@@ -11,23 +11,23 @@ module.exports = function (options, cb) {
 		name,
 		username,
 		publicId,
-		password,
-		salt
-	) VALUES (?,?,?,?,?,?,?);
+		password
+	) VALUES (?,?,?,?,?,?);
 	`;
+	
+	console.log(options);
 	const params = [
 		options.email,
 		options.date,
 		options.name,
 		options.username,
 		options.publicId,
-		options.passHash,
-		options.salt
+		options.password
 	];
 
 	mysql(sql, params, function (err, results) {
 		if (err) {
-			pino.error('Error inserting new user', {
+			pino.info('Error inserting new user', {
 				err: err,
 				sql: sql,
 				params: params

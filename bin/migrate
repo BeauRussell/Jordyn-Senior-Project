@@ -38,21 +38,20 @@ DORM_COORDS = {
 TABLES = {}
 
 TABLES['users'] = ("CREATE TABLE `users` ("
-	"`id` INT AUTO_INCREMENT NOT NULL,"
+	"`id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,"
 	"`publicId` VARCHAR(36) NOT NULL,"
 	"`email` VARCHAR(30) NOT NULL,"
 	"`creation` DATE NOT NULL,"
 	"`name` VARCHAR(30),"
 	"`username` VARCHAR(30),"
-	"`password` VARCHAR(50) NOT NULL,"
-	"`salt` VARCHAR(16) NOT NULL,"
-	"`scheduleId` VARCHAR(36) NOT NULL"
+	"`password` VARCHAR(50),"
+	"`scheduleId` VARCHAR(36)"
 	");")
 
 TABLES['schedules'] = ("CREATE TABLE `schedules` ("
-	"`id` INT AUTO_INCREMENT NOT NULL,"
+	"`id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,"
 	"`publicId` VARCHAR(36) NOT NULL,"
-	"`userPublicId` VARCHAR(36) NOT NULL"
+	"`userPublicId` VARCHAR(36) NOT NULL,"
 	"`dorm` VARCHAR(30),"
 	"`class1` VARCHAR(30),"
 	"`class2` VARCHAR(30),"
@@ -63,10 +62,10 @@ TABLES['schedules'] = ("CREATE TABLE `schedules` ("
 	");")
 
 TABLES['buildings'] = ("CREATE TABLE `buildings` ("
-	"`id` INT AUTO_INCREMENT NOT NULL,"
+	"`id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,"
 	"`publicId` VARCHAR(36) NOT NULL,"
 	"`type` VARCHAR(30) NOT NULL,"
-	"`name` VARCHAR(30) NOT NULL,"
+	"`name` VARCHAR(30),"
 	"`latitude` FLOAT NOT NULL,"
 	"`longitude` FLOAT NOT NULL"
 	");")
@@ -90,27 +89,30 @@ def createTables (cursor):
 
 def writeBuildings (cursor):
 	for building in CLASS_COORDS:
-		publicId = uuid.uuidv4()
-		cursor.execute(("INSERT INTO `buildings` ("
+		publicId = uuid.uuid4()
+		query = ("INSERT INTO `buildings` ("
 			"`publicId`, `type`, `name`, `latitude`, `longitude`"
-			") VALUES ({}, {}, {}, {}, {}").format(
-				publicId, "class", building, CLASS_COORDS[building][0], CLASS_COORDS[building][1]
-			))
+			") VALUES (\"{}\", \"{}\", \"{}\", {}, {});").format(
+				str(publicId), "class", building, CLASS_COORDS[building][0], CLASS_COORDS[building][1]
+			)
+		cursor.execute(query)
 
 	for dorm in DORM_COORDS:
-		publicId = uuid.uuidv4()
-		cursor.execute(("INSERT INTO `buildings` ("
+		publicId = uuid.uuid4()
+		query = ("INSERT INTO `buildings` ("
 			"`publicId`, `type`, `name`, `latitude`, `longitude`"
-			") VALUES ({}, {}, {}, {}, {}").format(
-				publicId, "dorm", building, DORM_COORDS[building][0], DORM_COORDS[building][1]
-			))
+			") VALUES (\"{}\", \"{}\", \"{}\", {}, {});").format(
+				str(publicId), "dorm", dorm, DORM_COORDS[dorm][0], DORM_COORDS[dorm][1]
+			)
+		cursor.execute(query)
 
 def main ():
-	cnx = mysql.connect(user='admin', port='32777')
+	cnx = mysql.connect(user='root', port='32807')
 	cursor = cnx.cursor()
 
 	try:
 		cursor.execute("Use {}".format(DB_NAME))
+		print("Using database {}".format(DB_NAME))
 	except mysql.Error as err:
 		print("Database with name {} does not exist, creating it".format(DB_NAME))
 		if err.errno == errorcode.ER_BAD_DB_ERROR:
@@ -126,7 +128,7 @@ def main ():
 	createTables(cursor)
 	print("Writing In Building Rows")
 	writeBuildings(cursor)
-
 	print("Successfully completed")
+	cnx.commit()
 
 main()
