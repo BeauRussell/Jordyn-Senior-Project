@@ -5,24 +5,28 @@ const pino = require('pino')();
 
 module.exports = function (options, cb) {
 	const sql = `
-	INSERT INTO users (
-		email,
-		creation,
-		name,
-		username,
+	INSERT INTO schedules (
 		publicId,
-		password
-	) VALUES (?,?,?,?,?,?);
+		userPublicId,
+		dorm,
+		class1,
+		class2,
+		class3,
+		class4,
+		class5,
+		class6
+	) VALUES (?,?,?,?,?,?,?,?,?);
 	`;
 	
 	const params = [
-		options.email,
-		options.date,
-		options.name,
-		options.username,
 		options.publicId,
-		options.password
+		options.userPublicId,
+		options.dorm
 	];
+
+	for (let i = 0; i < options.classes.length && i < 5; i++) {
+		params.push(options.classes[i]);
+	}
 
 	mysql(sql, params, function (err, results) {
 		if (err) {

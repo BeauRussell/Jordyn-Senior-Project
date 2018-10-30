@@ -41,7 +41,7 @@ TABLES['users'] = ("CREATE TABLE `users` ("
 	"`id` INT AUTO_INCREMENT NOT NULL PRIMARY KEY,"
 	"`publicId` VARCHAR(36) NOT NULL,"
 	"`email` VARCHAR(30) NOT NULL,"
-	"`creation` DATE NOT NULL,"
+	"`creation` VARCHAR(24) NOT NULL,"
 	"`name` VARCHAR(30),"
 	"`username` VARCHAR(30),"
 	"`password` VARCHAR(50),"
@@ -107,7 +107,7 @@ def writeBuildings (cursor):
 		cursor.execute(query)
 
 def main ():
-	cnx = mysql.connect(user='root', port='32807')
+	cnx = mysql.connect(user='root', port='32779', host='192.168.99.100')
 	cursor = cnx.cursor()
 
 	try:

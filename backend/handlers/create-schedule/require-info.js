@@ -1,6 +1,5 @@
 'use strict';
 
-const moment = require('moment');
 const uuid = require('uuid/v4');
 
 module.exports = function requireInfo (req, cb) {
@@ -12,15 +11,10 @@ module.exports = function requireInfo (req, cb) {
 		return cb(err, null);
 	}
 
-	const creation = moment().utc().toISOString();
-	const publicId = uuid();
-
-	options.email = req.body.email;
-	options.date = creation;
-	options.name = req.body.studentName;
-	options.username = req.body.username;
-	options.publicId = publicId;
-	options.password = req.body.password;
+	options.publicId = uuid();
+	options.userPublicId = req.body.userPublicId;
+	options.dorm = req.body.dorm;
+	options.classes = req.body.classes;
 
 	return cb(null, options);
 };

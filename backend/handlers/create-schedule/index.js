@@ -1,7 +1,7 @@
 'use strict';
 
 const requireInfo = require('./require-info');
-const insertUser = require('./insert-user');
+const insertSchedule = require('./insert-schedule');
 
 module.exports = function (req, res) {
 	requireInfo(req, function (err, options) {
@@ -9,9 +9,9 @@ module.exports = function (req, res) {
 			return res.status(500).send(['Error verifying info', {err: err, info: req.body}]);
 		}
 
-		insertUser(options, function (err) {
+		insertSchedule(options, function (err) {
 			if (err) {
-				return res.status(500).send(['Error creating user', {err: err, options: options}]);
+				return res.status(500).send(['Error creating schedule', {err: err, options: options}]);
 			}
 			res.status(204).send();
 		});
