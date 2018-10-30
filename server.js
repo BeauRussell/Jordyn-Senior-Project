@@ -15,4 +15,4 @@ app.post('/schedule/create', createSchedule);
 
 app.listen(port);
 
-console.log('app started on port: ' + port)
+console.log('app started on port: ' + port);

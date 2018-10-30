@@ -18,7 +18,7 @@ module.exports = function (options, cb) {
 	) VALUES (?,?,?,?,?,?,?,?,?);
 	`;
 	
-	const params = [
+	let params = [
 		options.publicId,
 		options.userPublicId,
 		options.dorm
@@ -28,7 +28,7 @@ module.exports = function (options, cb) {
 		params.push(options.classes[i]);
 	}
 
-	mysql(sql, params, function (err, results) {
+	mysql(sql, params, function (err) {
 		if (err) {
 			pino.info('Error inserting new user', {
 				err: err,

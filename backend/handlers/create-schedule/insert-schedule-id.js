@@ -10,13 +10,13 @@ module.exports = function (userPublicId, schedulePublicId, cb) {
 		WHERE publicId = ?
 	`;
 
-	params = [
+	const params = [
 		schedulePublicId,
 		userPublicId
 	];
 	
 
-	mysql(sql, params, function (err, results) {
+	mysql(sql, params, function (err) {
 		if (err) {
 			pino.info('Error inserting new user', {
 				err: err,

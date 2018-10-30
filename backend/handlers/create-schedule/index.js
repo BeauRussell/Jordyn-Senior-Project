@@ -17,7 +17,7 @@ module.exports = function (req, res) {
 
 			insertId(options.userPublicId, schedulePublicId, function (err) {
 				if (err) {
-					return res.status(500).send(['Error inserting Schedule Id', {err: err, id: schedulePublicId}])
+					return res.status(500).send(['Error inserting Schedule Id', {err: err, id: schedulePublicId}]);
 				}
 				res.status(204).send();
 			});
