@@ -23,6 +23,7 @@
   "devDependencies": {
     "babel-eslint": "^7.2.3",
     "bcrypt": "^3.0.2",
+    "browserify": "^16.2.3",
     "eslint": "^4.1.1",
     "eslint-config-react-app": "^2.1.0",
     "eslint-plugin-flowtype": "^2.34.1",

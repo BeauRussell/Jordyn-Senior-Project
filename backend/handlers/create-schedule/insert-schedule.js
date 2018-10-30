@@ -38,6 +38,6 @@ module.exports = function (options, cb) {
 			return cb(err);
 		}
 
-		return cb(null, results);
+		return cb(null, options.publicId);
 	});
 };
