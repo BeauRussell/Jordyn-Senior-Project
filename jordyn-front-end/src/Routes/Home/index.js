@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import serviceRequest from 'Shared/serviceRequest';
 import Header from 'Components/Header';
+import MapComponent from 'Components/Map';
 
 class Home extends Component {
 	constructor(props) {
@@ -17,7 +18,13 @@ class Home extends Component {
 			dorm: ''
 		}
 
-		console.log(this.state.userPublicId);
+		this.handleclassName1Change = this.handleclassName1Change.bind(this);
+		this.handleclassName2Change = this.handleclassName2Change.bind(this);
+		this.handleclassName3Change = this.handleclassName3Change.bind(this);
+		this.handleclassName4Change = this.handleclassName4Change.bind(this);
+		this.handleclassName5Change = this.handleclassName5Change.bind(this);
+		this.handleclassName6Change = this.handleclassName6Change.bind(this);
+		this.submitSchedule = this.submitSchedule.bind(this);
 	}
 
 	handleclassName1Change (event) {
@@ -63,13 +70,17 @@ class Home extends Component {
 			body: {
 				userPublicId: this.state.userPublicId,
 				dorm: this.state.dorm,
-				classNamees: [this.state.className1, this.state.className2, this.state.className3, this.state.className4, this.state.className5, this.state.className6]
+				classes: [this.state.className1, this.state.className2, this.state.className3, this.state.className4, this.state.className5, this.state.className6]
 			}
 		}, function (err, resp, body) {
 			if (err || resp.statusCode >= 400) {
 				console.log(err);
 				console.log(resp.statusCode);
 				return;
+			}
+
+			if (!localStorage.getItem('userPublicId')) {
+				localStorage.setItem('userPublicId': body.userPublicId);
 			}
 		});
 	}
@@ -87,54 +98,54 @@ class Home extends Component {
 					<form>
 
 
-					<h3 className ="text-center"> Enter classNameroom </h3>
+					<h3 className ="text-center"> Enter classroom </h3>
 
 
 					<div className="form-group">
 
-						<label htmlFor="className One">className One:</label>
+						<label>Class One:</label>
 
-						<input type="text" className="form-control" id="text" placeholder="Example: Langner 123" />
+						<input className="form-control" onChange={this.handleclassName1Change} placeholder="Example: Langner 123" />
 
 					</div>
 
 				<div className="form-group">
 
-					<label htmlFor="className Two">className Two:</label>
+					<label>Class Two:</label>
 
-					<input type="text" className="form-control" id="text" placeholder="Example: Langner 123" />
-
-				</div>
-
-				<div className="form-group">
-
-					<label htmlFor="className Three">className Three:</label>
-
-					<input type="text" className="form-control" id="text" placeholder="Example: Langner 123" />
+					<input className="form-control" onChange={this.handleclassName2Change} placeholder="Example: Langner 123" />
 
 				</div>
 
 				<div className="form-group">
 
-					<label htmlFor="className Four">className Four:</label>
+					<label>Class Three:</label>
 
-					<input type="text" className="form-control" id="text" placeholder="Example: Langner 123" />
-
-				</div>
-
-				<div className="form-group">
-
-					<label htmlFor="className Five">className Five:</label>
-
-					<input type="text" className="form-control" id="text" placeholder="Example: Langner 123" />
+					<input className="form-control" onChange={this.handleclassName3Change} placeholder="Example: Langner 123" />
 
 				</div>
 
 				<div className="form-group">
 
-					<label htmlFor="className Six">className Six:</label>
+					<label>Class Four:</label>
 
-					<input type="text" className="form-control" id="text" placeholder="Example: Langner 123" />
+					<input className="form-control" onChange={this.handleclassName4Change} placeholder="Example: Langner 123" />
+
+				</div>
+
+				<div className="form-group">
+
+					<label>Class Five:</label>
+
+					<input className="form-control" onChange={this.handleclassName5Change} placeholder="Example: Langner 123" />
+
+				</div>
+
+				<div className="form-group">
+
+					<label>Class Six:</label>
+
+					<input className="form-control" onChange={this.handleclassName6Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -146,13 +157,15 @@ class Home extends Component {
 
 				</div>
 
-					<button onClick={this.submitSchedule} type="submit" className="center-block btn btn-lg btn-primary">Submit</button>
+					<button onClick={this.submitSchedule} className="center-block btn btn-lg btn-primary">Submit</button>
 
 				</form>
 
 				</div>
 
 				</div>
+
+				<MapComponent />
 
 				</div>
 		);
