@@ -41,14 +41,14 @@ class SignUp extends React.Component {
   handlePasswordChange (event) {
   	this.setState({
   		password: event.target.value,
-  		passwordErr: event.target.value !== this.state.verifyPassword
+  		passwordErr: event.target.value !== this.state.verifyPassword && event.target.value.length > 6
   	});
   }
 
   handleVerifyPasswordChange (event) {
   	this.setState({
   		verifyPassword: event.target.value,
-  		passwordErr: event.target.value !== this.state.password
+  		passwordErr: event.target.value !== this.state.password && event.target.value.length > 6
   	});
   }
 
