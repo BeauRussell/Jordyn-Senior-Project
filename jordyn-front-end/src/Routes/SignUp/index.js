@@ -62,12 +62,13 @@ class SignUp extends React.Component {
   			studentName: this.state.name
   		}
   	}, function (err, resp, body) {
-  		if (err || resp.statusCode >= 400) {
+  		if (err) {
   			console.log(err);
   			console.log(resp.statusCode);
   			console.log(body);
   			return;
   		}
+
   		localStorage.setItem('userPublicId', body.userPublicId);
   	});	
   }
@@ -87,8 +88,6 @@ class SignUp extends React.Component {
 				<h3 className="text-center" ><img src="LogoMakr_3d3zxO.png" alt="logo" /></h3>
 
 				<h3 className="text-center"> Sign Up </h3>
-
-				{console.log(localStorage.getItem('userPublicId'))}
 
 				<div className="form-group">
 

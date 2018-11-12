@@ -24,6 +24,6 @@ module.exports = function (givenEmail, cb) {
 			return cb(err);
 		}
 
-		return cb(null, results[0]);
+		return cb(null, results);
 	});
 };
