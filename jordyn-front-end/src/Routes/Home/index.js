@@ -14,9 +14,9 @@ class Home extends Component {
 			className4: '',
 			className5: '',
 			className6: '',
-			userPublicId: localStorage.getItem('userPublicId'),
+			userPublicId: '9c65d0fe-9bee-4244-a8bd-48c9ac296470',
 			dorm: '',
-			activeClass: ''
+			activated: ''
 		}
 
 		this.handleclassName1Change = this.handleclassName1Change.bind(this);
@@ -90,7 +90,7 @@ class Home extends Component {
 			}
 
 			if (!localStorage.getItem('userPublicId')) {
-				localStorage.setItem('userPublicId': body.userPublicId);
+				localStorage.setItem('userPublicId': body.publicId);
 			}
 		});
 	}
@@ -117,7 +117,8 @@ class Home extends Component {
 				class4: body.class4 || '',
 				class5: body.class5 || '',
 				class6: body.class6 || '',
-				dorm: body.dorm || ''
+				dorm: body.dorm || '',
+				activated: body.class1 || body.class2 || body.class3 || body.class4 || body.class5 || body.class6
 			});
 		});
 	}
@@ -201,7 +202,7 @@ class Home extends Component {
 				</div>
 
 				<MapComponent 
-					building={this.state.activated && this.state.activated.slice(' ')[0]}
+					building={this.state.activated && this.state.activated.split(' ')[0]}
 				/>
 
 				{

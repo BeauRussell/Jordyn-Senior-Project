@@ -32,7 +32,6 @@ class Login extends React.Component {
   }
 
   sendLogin () {
-  	console.log(this.state);
   	serviceRequest({
   		method: 'PUT',
   		uri: '/user/login',
@@ -43,11 +42,6 @@ class Login extends React.Component {
   	}, function (err, resp, body) {
   		if (err) {
   			console.log(err);
-  			console.log(body);
-  			return;
-  		}
-  		if (resp.statusCode !== 200) {
-  			console.log(resp.statusCode);
   			console.log(body);
   			return;
   		}
