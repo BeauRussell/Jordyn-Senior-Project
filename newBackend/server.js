@@ -18,10 +18,10 @@ app.use(bodyParser.json());
 app.put('/user/login', login);
 app.post('/user/create', createUser);
 
-app.get('/schedule', getSchedule);
+app.put('/schedule', getSchedule);
 app.post('/schedule/create', createSchedule);
 
-app.get('/building', getCoordinates);
+app.put('/building', getCoordinates);
 
 app.listen(port);
 

@@ -5,7 +5,7 @@ const pino = require('pino')();
 
 module.exports = function (userPublicId, cb) {
 	const sql = `
-		SELECT userPublicId, dorm, class1, class2, class3, class4, class5, class6
+		SELECT dorm, class1, class2, class3, class4, class5, class6
 		FROM schedules
 		WHERE userPublicId = ?
 	`;
@@ -23,7 +23,7 @@ module.exports = function (userPublicId, cb) {
 			});
 			return cb(err);
 		}
-
-		return cb(null, results[results.length - 1]);
+		
+		return cb(null, results.length > 0 && results[results.length - 1]);
 	});
 };

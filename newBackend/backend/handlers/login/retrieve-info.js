@@ -5,7 +5,7 @@ const pino = require('pino')();
 
 module.exports = function (givenEmail, cb) {
 	const sql = `
-		SELECT userPublicId, password
+		SELECT publicId, password
 		FROM users
 		WHERE email = ?
 	`;
@@ -24,6 +24,6 @@ module.exports = function (givenEmail, cb) {
 			return cb(err);
 		}
 
-		return cb(null, results);
+		return cb(null, results[0]);
 	});
 };

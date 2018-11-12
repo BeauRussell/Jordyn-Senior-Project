@@ -24,13 +24,13 @@ module.exports = function (options, cb) {
 		options.dorm
 	];
 
-	for (let i = 0; i < options.classes.length && i < 5; i++) {
+	for (let i = 0; i < 6; i++) {
 		params.push(options.classes[i]);
 	}
 
 	mysql(sql, params, function (err) {
 		if (err) {
-			pino.info('Error inserting new user', {
+			pino.info('Error inserting new schedule', {
 				err: err,
 				sql: sql,
 				params: params

@@ -40,10 +40,18 @@ class Login extends React.Component {
   			email: this.state.email,
   			password: this.state.password
   		}
-  	}, function (req, resp, body) {
-  		console.log(resp.statusCode);
-  		console.log(resp);
-  		console.log(body);
+  	}, function (err, resp, body) {
+  		if (err) {
+  			console.log(err);
+  			console.log(body);
+  			return;
+  		}
+  		if (resp.statusCode !== 200) {
+  			console.log(resp.statusCode);
+  			console.log(body);
+  			return;
+  		}
+  		localStorage.setItem('userPublicId', body.publicId);
   	});
   }
 
@@ -81,7 +89,7 @@ class Login extends React.Component {
 
 					<label htmlFor="Signup">Want to Sign up?</label>
 
-				<label><a href="signup.html" style={{color: 'dodgerblue'}}>Sign up</a></label>
+				<label><a href="signup" style={{color: 'dodgerblue'}}>Sign up</a></label>
 
 				</div>
 

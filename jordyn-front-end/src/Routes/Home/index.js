@@ -15,7 +15,8 @@ class Home extends Component {
 			className5: '',
 			className6: '',
 			userPublicId: localStorage.getItem('userPublicId'),
-			dorm: ''
+			dorm: '',
+			activeClass: ''
 		}
 
 		this.handleclassName1Change = this.handleclassName1Change.bind(this);
@@ -25,6 +26,9 @@ class Home extends Component {
 		this.handleclassName5Change = this.handleclassName5Change.bind(this);
 		this.handleclassName6Change = this.handleclassName6Change.bind(this);
 		this.submitSchedule = this.submitSchedule.bind(this);
+		this.findSchedule = this.findSchedule.bind(this);
+		this.changeActivated = this.changeActivated.bind(this);
+		this.findSchedule();
 	}
 
 	handleclassName1Change (event) {
@@ -63,6 +67,12 @@ class Home extends Component {
 		});
 	}
 
+	changeActivated (event, classNum) {
+		this.setState({
+			activated: classNum
+		});
+	}
+
 	submitSchedule () {
 		serviceRequest({
 			method: 'POST',
@@ -85,6 +95,33 @@ class Home extends Component {
 		});
 	}
 
+	findSchedule () {
+		serviceRequest({
+			method: 'PUT',
+			uri: '/schedule',
+			body: {
+				userPublicId: this.state.userPublicId
+			}
+		}, (err, resp, body) => {
+			if (err) {
+				console.log(err);
+				return;
+			}
+			if (resp.statusCode >= 400) {
+				return;
+			}
+			this.setState({
+				class1: body.class1 || '',
+				class2: body.class2 || '',
+				class3: body.class3 || '',
+				class4: body.class4 || '',
+				class5: body.class5 || '',
+				class6: body.class6 || '',
+				dorm: body.dorm || ''
+			});
+		});
+	}
+
 	render () {
 		return (
 			<div className="container">
@@ -97,15 +134,13 @@ class Home extends Component {
 
 					<form>
 
-
 					<h3 className ="text-center"> Enter classroom </h3>
-
 
 					<div className="form-group">
 
 						<label>Class One:</label>
 
-						<input className="form-control" onChange={this.handleclassName1Change} placeholder="Example: Langner 123" />
+						<input className="form-control" onChange={this.handleclassName1Change} placeholder="Example: Langner 123" value={this.state.class1} />
 
 					</div>
 
@@ -113,7 +148,7 @@ class Home extends Component {
 
 					<label>Class Two:</label>
 
-					<input className="form-control" onChange={this.handleclassName2Change} placeholder="Example: Langner 123" />
+					<input className="form-control" onChange={this.handleclassName2Change} placeholder="Example: Langner 123" value={this.state.class2} />
 
 				</div>
 
@@ -121,7 +156,7 @@ class Home extends Component {
 
 					<label>Class Three:</label>
 
-					<input className="form-control" onChange={this.handleclassName3Change} placeholder="Example: Langner 123" />
+					<input className="form-control" onChange={this.handleclassName3Change} placeholder="Example: Langner 123" value={this.state.class3} />
 
 				</div>
 
@@ -129,7 +164,7 @@ class Home extends Component {
 
 					<label>Class Four:</label>
 
-					<input className="form-control" onChange={this.handleclassName4Change} placeholder="Example: Langner 123" />
+					<input className="form-control" onChange={this.handleclassName4Change} placeholder="Example: Langner 123" value={this.state.class4} />
 
 				</div>
 
@@ -137,7 +172,7 @@ class Home extends Component {
 
 					<label>Class Five:</label>
 
-					<input className="form-control" onChange={this.handleclassName5Change} placeholder="Example: Langner 123" />
+					<input className="form-control" onChange={this.handleclassName5Change} placeholder="Example: Langner 123" value={this.state.class5} />
 
 				</div>
 
@@ -145,13 +180,13 @@ class Home extends Component {
 
 					<label>Class Six:</label>
 
-					<input className="form-control" onChange={this.handleclassName6Change} placeholder="Example: Langner 123" />
+					<input className="form-control" onChange={this.handleclassName6Change} placeholder="Example: Langner 123" value={this.state.class6} />
 
 				</div>
 
 				<div className="sign">
 
-					<label htmlFor="Signup">Want to Sign up?</label>
+					<label>Want to Sign up?</label>
 
 				<label><a href="/signup" style={{color: 'dodgerblue'}}>Sign up</a></label>
 
@@ -165,7 +200,52 @@ class Home extends Component {
 
 				</div>
 
-				<MapComponent />
+				<MapComponent 
+					building={this.state.activated && this.state.activated.slice(' ')[0]}
+				/>
+
+				{
+					this.state.class1 ?
+					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class1)}}>
+						<h1>{this.state.class1}</h1>
+					</div>
+					: null
+				}
+				{
+					this.state.class2 ?
+					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class2)}}>
+						<h1>{this.state.class2}</h1>
+					</div>
+					: null
+				}
+				{
+					this.state.class3 ?
+					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class3)}}>
+						<h1>{this.state.class3}</h1>
+					</div>
+					: null
+				}
+				{
+					this.state.class4 ?
+					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class4)}}>
+						<h1>{this.state.class4}</h1>
+					</div>
+					: null
+				}
+				{
+					this.state.class5 ?
+					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class5)}}>
+						<h1>{this.state.class5}</h1>
+					</div>
+					: null
+				}
+				{
+					this.state.class6 ?
+					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class6)}}>
+						<h1>{this.state.class6}</h1>
+					</div>
+					: null
+				}
 
 				</div>
 		);

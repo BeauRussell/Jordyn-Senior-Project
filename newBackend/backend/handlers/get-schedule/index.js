@@ -15,10 +15,10 @@ module.exports = function (req, res) {
 			}
 
 			if (!results) {
-				res.status(404).send();
+				return res.status(404).send();
 			}
 
-			res.status(200).send(results[0]);
+			res.status(200).send(results);
 		});
 	});
 };

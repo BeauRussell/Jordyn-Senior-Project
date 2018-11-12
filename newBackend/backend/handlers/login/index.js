@@ -10,11 +10,11 @@ module.exports = function (req, res) {
 		}
 
 		retrieveInfo(options.email, function (err, results) {
-			if (err || !password || results.password !== options.password) {
+			if (err || !options.password || results.password !== options.password) {
 				return res.status(404).send();
 			}
 
-			return res.status(200).send(results);
+			return res.status(200).send(results.publicId);
 		});
 	});
 };

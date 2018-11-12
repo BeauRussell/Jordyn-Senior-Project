@@ -66,8 +66,8 @@ TABLES['buildings'] = ("CREATE TABLE `buildings` ("
 	"`publicId` VARCHAR(36) NOT NULL,"
 	"`type` VARCHAR(30) NOT NULL,"
 	"`name` VARCHAR(30),"
-	"`latitude` FLOAT NOT NULL,"
-	"`longitude` FLOAT NOT NULL"
+	"`latitude` DOUBLE NOT NULL,"
+	"`longitude` DOUBLE NOT NULL"
 	");")
 
 def createDatabase (cursor):
@@ -107,7 +107,7 @@ def writeBuildings (cursor):
 		cursor.execute(query)
 
 def main ():
-	cnx = mysql.connect(user='root', port='32779', host='192.168.99.100')
+	cnx = mysql.connect(user='root', port='32769')
 	cursor = cnx.cursor()
 
 	try:

@@ -12,19 +12,22 @@ class MapComponent extends React.Component {
 		}
 
 		this.findBuildingCoords = this.findBuildingCoords.bind(this);
+		this.findBuildingCoords();
 	}
 
 	findBuildingCoords () {
 		serviceRequest({
+			method: 'PUT',
 			uri: '/building',
-			data: {
-				building: this.props.building
+			body: {
+				building: 'Langner'
 			}
-		}, function (err, resp, body) {
+		}, (err, resp, body) => {
 			if (err || resp.statusCode >= 400) {
 				console.log(err);
-				console.log(resp.statusCode);
-				console.log(body);
+				console.log(resp);
+				console.log(body)
+				return;
 			}
 
 			this.setState({
