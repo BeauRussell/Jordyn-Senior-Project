@@ -28,6 +28,9 @@ class Home extends Component {
 		this.submitSchedule = this.submitSchedule.bind(this);
 		this.findSchedule = this.findSchedule.bind(this);
 		this.changeActivated = this.changeActivated.bind(this);
+	}
+
+	componentDidMount () {
 		this.findSchedule();
 	}
 
@@ -96,6 +99,7 @@ class Home extends Component {
 	}
 
 	findSchedule () {
+		console.log('hi');
 		serviceRequest({
 			method: 'PUT',
 			uri: '/schedule',
@@ -141,7 +145,7 @@ class Home extends Component {
 
 						<label>Class One:</label>
 
-						<input className="form-control" onChange={this.handleclassName1Change} placeholder="Example: Langner 123" value={this.state.class1} />
+						<input className="form-control" onChange={this.handleclassName1Change} placeholder="Example: Langner 123" />
 
 					</div>
 
@@ -149,7 +153,7 @@ class Home extends Component {
 
 					<label>Class Two:</label>
 
-					<input className="form-control" onChange={this.handleclassName2Change} placeholder="Example: Langner 123" value={this.state.class2} />
+					<input className="form-control" onChange={this.handleclassName2Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -157,7 +161,7 @@ class Home extends Component {
 
 					<label>Class Three:</label>
 
-					<input className="form-control" onChange={this.handleclassName3Change} placeholder="Example: Langner 123" value={this.state.class3} />
+					<input className="form-control" onChange={this.handleclassName3Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -165,7 +169,7 @@ class Home extends Component {
 
 					<label>Class Four:</label>
 
-					<input className="form-control" onChange={this.handleclassName4Change} placeholder="Example: Langner 123" value={this.state.class4} />
+					<input className="form-control" onChange={this.handleclassName4Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -173,7 +177,7 @@ class Home extends Component {
 
 					<label>Class Five:</label>
 
-					<input className="form-control" onChange={this.handleclassName5Change} placeholder="Example: Langner 123" value={this.state.class5} />
+					<input className="form-control" onChange={this.handleclassName5Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -181,7 +185,7 @@ class Home extends Component {
 
 					<label>Class Six:</label>
 
-					<input className="form-control" onChange={this.handleclassName6Change} placeholder="Example: Langner 123" value={this.state.class6} />
+					<input className="form-control" onChange={this.handleclassName6Change} placeholder="Example: Langner 123" />
 
 				</div>
 
