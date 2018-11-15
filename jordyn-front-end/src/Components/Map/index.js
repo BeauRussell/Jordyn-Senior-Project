@@ -46,14 +46,14 @@ class MapComponent extends React.Component {
 
 	render () {
 		return(
-			<div className="map">
+			<div className="text-center">
 				<GoogleMapComponent
 					isMarkerShown
 					coordinates={this.state}
 				  googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBeiG0m1AvNT6auZxPkWiqspzqN4qCOA90&v=3.exp&libraries=geometry,drawing,places"
 				  loadingElement={<div style={{ height: `100%` }} />}
 				  containerElement={<div style={{ height: `400px` }} />}
-				  mapElement={<div style={{ height: `100%`, width: '400px' }} />}
+				  mapElement={<div style={{ height: `100%`, width: '600px' }} />}
 				/>
 			</div>
 		);

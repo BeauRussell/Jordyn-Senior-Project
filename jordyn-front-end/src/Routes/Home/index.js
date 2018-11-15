@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import serviceRequest from 'Shared/serviceRequest';
 import Header from 'Components/Header';
 import MapComponent from 'Components/Map';
+import './home.css';
 
 class Home extends Component {
 	constructor(props) {
@@ -133,19 +134,17 @@ class Home extends Component {
 
 				<Header />
 
-				<div className="row">
-
-					<div className="col-sm-7 center-block">
-
 					<form>
 
-					<h3 className ="text-center"> Enter classroom </h3>
+					<h3 className="text-center" ><img src={require('./LogoMakr_3d3zxO.png')} alt="logo" /></h3>
+
+					<h3 className ="content" > Enter Building Name and Classroom Number </h3>
 
 					<div className="form-group">
 
 						<label>Class One:</label>
 
-						<input className="form-control" onChange={this.handleclassName1Change} placeholder="Example: Langner 123" />
+						<input className="text" onChange={this.handleclassName1Change} placeholder="Example: Langner 123" />
 
 					</div>
 
@@ -153,7 +152,7 @@ class Home extends Component {
 
 					<label>Class Two:</label>
 
-					<input className="form-control" onChange={this.handleclassName2Change} placeholder="Example: Langner 123" />
+					<input className="text" onChange={this.handleclassName2Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -161,7 +160,7 @@ class Home extends Component {
 
 					<label>Class Three:</label>
 
-					<input className="form-control" onChange={this.handleclassName3Change} placeholder="Example: Langner 123" />
+					<input className="text" onChange={this.handleclassName3Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -169,7 +168,7 @@ class Home extends Component {
 
 					<label>Class Four:</label>
 
-					<input className="form-control" onChange={this.handleclassName4Change} placeholder="Example: Langner 123" />
+					<input className="text" onChange={this.handleclassName4Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -177,7 +176,7 @@ class Home extends Component {
 
 					<label>Class Five:</label>
 
-					<input className="form-control" onChange={this.handleclassName5Change} placeholder="Example: Langner 123" />
+					<input className="text" onChange={this.handleclassName5Change} placeholder="Example: Langner 123" />
 
 				</div>
 
@@ -185,25 +184,22 @@ class Home extends Component {
 
 					<label>Class Six:</label>
 
-					<input className="form-control" onChange={this.handleclassName6Change} placeholder="Example: Langner 123" />
+					<input className="text" onChange={this.handleclassName6Change} placeholder="Example: Langner 123" />
 
 				</div>
 
 				<div className="sign">
 
-					<label>Want to Sign up?</label>
+					<label>Do you want to sign up? </label>
 
-				<label><a href="/signup" style={{color: 'dodgerblue'}}>Sign up</a></label>
+				<label><a href="/signup" style={{color: 'dodgerblue'}}>Sign Up</a></label>
 
 				</div>
 
-					<button onClick={this.submitSchedule} className="center-block btn btn-lg btn-primary">Submit</button>
+					<button onClick={this.submitSchedule} className="button">Submit</button>
 
 				</form>
 
-				</div>
-
-				</div>
 
 				<MapComponent 
 					building={this.state.activated && this.state.activated.split(' ')[0]}
@@ -211,42 +207,42 @@ class Home extends Component {
 
 				{
 					this.state.class1 ?
-					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class1)}}>
+					<div className="results" onClick={(e) => {this.changeActivated(e, this.state.class1)}}>
 						<h1>{this.state.class1}</h1>
 					</div>
 					: null
 				}
 				{
 					this.state.class2 ?
-					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class2)}}>
+					<div className="results"  onClick={(e) => {this.changeActivated(e, this.state.class2)}}>
 						<h1>{this.state.class2}</h1>
 					</div>
 					: null
 				}
 				{
 					this.state.class3 ?
-					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class3)}}>
+					<div className="results"  onClick={(e) => {this.changeActivated(e, this.state.class3)}}>
 						<h1>{this.state.class3}</h1>
 					</div>
 					: null
 				}
 				{
 					this.state.class4 ?
-					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class4)}}>
+					<div className="results" onClick={(e) => {this.changeActivated(e, this.state.class4)}}>
 						<h1>{this.state.class4}</h1>
 					</div>
 					: null
 				}
 				{
 					this.state.class5 ?
-					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class5)}}>
+					<div className="results" onClick={(e) => {this.changeActivated(e, this.state.class5)}}>
 						<h1>{this.state.class5}</h1>
 					</div>
 					: null
 				}
 				{
 					this.state.class6 ?
-					<div className="select-class" style={{width:'100%'}} onClick={(e) => {this.changeActivated(e, this.state.class6)}}>
+					<div className="results" onClick={(e) => {this.changeActivated(e, this.state.class6)}}>
 						<h1>{this.state.class6}</h1>
 					</div>
 					: null

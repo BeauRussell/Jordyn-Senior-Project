@@ -139,3 +139,27 @@ form {
     color: #FFF;
 
 }
+.text {
+    padding: 1em 1em;
+    margin: 1em;
+    font-size: 10px;
+    background: white;
+    border: 2px solid dodgerblue;
+}
+.content {
+    font-size: 25px;
+    text-align: center;
+    color: dodgerblue;
+}
+
+.button {
+    background: black;
+    border-radius: 5px;
+    border: 2px solid dodgerblue;
+    color: dodgerblue;
+    margin: 2em;
+    padding: 1em 2em;
+    text-align: center;
+    font-size: 15px;
+    cursor:pointer;
+}

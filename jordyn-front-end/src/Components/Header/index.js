@@ -1,37 +1,22 @@
 import React from 'react';
-import './index.css';
-import headerImg from './header-img.png';
+import './Header.css';
 
 class Header extends React.Component {
 	render () {
 		return (
+			
 			<div className="container-fluid">
 
-				<div className="navbar-header">
 
-				<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"> <span className="icon-bar"></span> <span className="icon-bar"></span> <span className="icon-bar"></span> </button>
+				<div className="text-center">
 
-				<img src={headerImg} alt="logo" width="200" height="45" />
+					<a href="/"> Home /</a>
 
-				</div>
+					<a href="/login"> Login /</a>
 
-				<div className="collapse navbar-collapse" id="myNavbar">
-
-				<ul className="nav navbar-nav navbar-right">
-
-				<li className="active"><a href="/home" className ="fa fa-home"></a></li>
-
-				<li><a href="/login">Login</a></li>
-
-				<li><a href="campusMap.html">Campus Map</a></li>
-
-				<li><a href="/info">FAQ</a></li>
-
-				</ul>
-
-				</div>
-
-			</div>
+					<a href="/signup"> Sign Up </a>
+</div>
+</div>
 		);
 	}
 }

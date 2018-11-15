@@ -1,6 +1,7 @@
 import React from 'react';
 import serviceRequest from 'Shared/serviceRequest';
-import './index.css';
+import './signup.css';
+import Header from 'Components/Header';
 
 class SignUp extends React.Component {
 	constructor (props) {
@@ -83,25 +84,27 @@ class SignUp extends React.Component {
 
 				<div className="col-sm-7 center-block">
 
+				<Header />
+				
 				<form>
 
-				<h3 className="text-center" ><img src="LogoMakr_3d3zxO.png" alt="logo" /></h3>
+				<h3 className="text-center" ><img src={require('./LogoMakr_3d3zxO.png')} alt="logo" /></h3>
 
-				<h3 className="text-center"> Sign Up </h3>
+				<h3 className="content"> Sign Up </h3>
 
 				<div className="form-group">
 
-				<label htmlFor="Name">Name</label>
+				<label htmlFor="Name">Name: </label>
 
-				<input className="form-control" placeholder="John Doe" onChange={this.handleNameChange} />
+				<input className="text" placeholder="John Doe" onChange={this.handleNameChange} />
 
 				</div>
 
 				<div className="form-group">
 
-				<label htmlFor="Email">Email address</label>
+				<label htmlFor="Email">Email Address: </label>
 
-				<input className="form-control" placeholder="you@domain.com" onChange={this.handleEmailChange} />
+				<input className="text" placeholder="you@domain.com" onChange={this.handleEmailChange} />
 
 				</div>
 
@@ -109,7 +112,7 @@ class SignUp extends React.Component {
 
 				<label htmlFor="Password">Password:</label>
 
-				<input className="form-control" placeholder="Enter Password" onChange={this.handlePasswordChange} />
+				<input className="text" placeholder="Enter Password" onChange={this.handlePasswordChange} />
 
 				</div>
 
@@ -117,11 +120,19 @@ class SignUp extends React.Component {
 
 				<label htmlFor="Password">Repeat Password:</label>
 
-				<input className="form-control" placeholder="Repeat Password" onChange={this.handleVerifyPasswordChange} />
+				<input className="text" placeholder="Repeat Password" onChange={this.handleVerifyPasswordChange} />
+
+				<div className="sign">
+
+					<label htmlFor="Signup">Do you want to login? </label>
+
+				<label><a href="/login" style={{color: 'dodgerblue'}}>Login</a></label>
 
 				</div>
 
-				<button className="center-block btn btn-lg btn-primary" onClick={this.createAccount} disabled={this.state.emailErr || this.state.passwordErr} >Sign Up</button>
+				</div>
+
+				<button className="button" onClick={this.createAccount} disabled={this.state.emailErr || this.state.passwordErr} >Sign Up</button>
 
 				</form>
 
